@@ -1,13 +1,7 @@
-function Camera(){
+function Camera(cb){
     navigator.mediaDevices.getUserMedia({video :true, audio : true})
-    .then(function(stream) {
-    /* use the stream */
-        console.log(stream)
-        const video = document.getElementById('localSteam');
-        video.srcObject = stream;
-        video.onloadedmetadata = function(){
-            video.play();
-        }
+    .then(stream => { 
+        cb(stream);        
     })
     .catch(function(err) {
     /* handle the error */
